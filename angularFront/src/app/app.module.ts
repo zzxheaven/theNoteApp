@@ -21,7 +21,8 @@ import {
   MatExpansionModule,
   MatListModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatInputModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +52,7 @@ import { EventComponent } from './event-list/event/event.component';
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatInputModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -15,6 +15,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   editMode = true;
   id: string;
   excursionEvent: ExcursionEvent;
+  myDate = new Date();
   constructor(private route: ActivatedRoute, private eventService: EventServiceService) {}
 
   ngOnInit() {

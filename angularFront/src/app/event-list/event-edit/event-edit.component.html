@@ -11,13 +11,13 @@
             <label for="location">Location</label>
             <input type="text" id="location" class="form-control" ngModel name="location" required>
           </div>
-          <!-- <div class="col-sm-2 form-group">
+          <div class="col-sm-2 form-group">
             <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date"  ngModel name="eventDate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-          </div> -->
+          </div>
         </div>
         <div class="row">
           <div class="col-xs-12">
