@@ -10,6 +10,6 @@ export class EventNoteEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }

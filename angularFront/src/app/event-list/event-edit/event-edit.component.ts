@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ExcursionEvent } from '../../models/excursion-event.model';
 import { EventServiceService } from '../../event-service.service';
 import { NgForm } from '@angular/forms';
+import { EventNote } from '../../models/event-note.model';
 
 @Component({
   selector: 'app-event-edit',
@@ -16,7 +17,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   id: string;
   excursionEvent: ExcursionEvent;
   myDate = new Date();
-  constructor(private route: ActivatedRoute, private eventService: EventServiceService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private eventService: EventServiceService) {}
 
   ngOnInit() {
     this.route.parent.params.subscribe((params: Params) => {
@@ -32,12 +33,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    const excursionEvent = new ExcursionEvent(value.id, value.subject, value.eventDateTime, value.location, []);
+    const excursionEvent = new ExcursionEvent(this.id, value.subject, value.eventDateTime, value.location, []);
 
     if (this.editMode) {
       this.eventService.updateExcursionEvent(excursionEvent);
     } else {
       this.eventService.addExcursionEvent(excursionEvent);
+      this.router.navigate(['/']);
     }
     this.editMode = false;
     form.reset();

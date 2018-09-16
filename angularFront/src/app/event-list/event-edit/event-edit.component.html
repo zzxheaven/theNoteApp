@@ -1,4 +1,30 @@
-<div class="container">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="form-container">
+
+    <mat-form-field>
+      <input matInput placeholder="Subject" [ngModel]="excursionEvent.subject" name="subject" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Location" [ngModel]="excursionEvent.location" name="location" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field style="width:10em;">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [ngModel]="excursionEvent.eventDateTime" name="eventDateTime">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update': 'Add' }}</button>
+      <button mat-raised-button color="warn" type="button" *ngIf="editMode" (click)="onDelete()">Delete</button>
+      <button mat-raised-button color="accent" type="button" (click)="onClear()">Clear</button>
+    </div>
+  </div>
+</form>
+
+
+<!-- <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
@@ -29,5 +55,4 @@
       </form>
     </div>
   </div>
-
-</div>
+</div> -->

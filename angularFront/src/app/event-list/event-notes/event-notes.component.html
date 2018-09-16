@@ -1,3 +1,18 @@
+<p>
+  Subject: {{excursionEvent.subject}}
+</p>
+
+<p>
+  Location: {{excursionEvent.location}}
+</p>
+
+<p>
+  Date: {{excursionEvent.eventDateTime.toLocaleDateString()}}
+</p>
+
+<p>
+  Excursion Notes:
+</p>
 <mat-list>
   <mat-list-item *ngFor="let note of excursionEvent.eventNotes"> {{defaultstr(note)}} </mat-list-item>
 </mat-list>

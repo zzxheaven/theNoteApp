@@ -9,6 +9,7 @@ import { EventNoteEditComponent } from './event-list/event-notes/event-note-edit
 const appRoutes: Routes = [
   { path: '', redirectTo: '/event-list', pathMatch: 'full' },
   { path: 'event-list', component: EventListComponent },
+  { path: 'event/new', component: EventEditComponent},
   {
     path: 'event/:id',
     component: EventComponent,
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
       { path: 'note-edit/:noteid', component: EventNoteEditComponent, pathMatch: 'full' },
     ],
   },
-  { path: 'event/new', component: EventEditComponent},
+
 ];
 
 @NgModule({
