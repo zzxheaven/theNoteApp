@@ -26,7 +26,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
       if (this.editMode) {
         this.excursionEvent = this.eventService.getExcursionEventById(this.id);
       } else {
-        this.excursionEvent = new ExcursionEvent('', '', new Date(), '', []);
+        this.id = this.eventService.guid();
+        this.excursionEvent = new ExcursionEvent(this.id, '', new Date(), '', []);
       }
     });
   }
@@ -37,12 +38,13 @@ export class EventEditComponent implements OnInit, OnDestroy {
 
     if (this.editMode) {
       this.eventService.updateExcursionEvent(excursionEvent);
+      this.router.navigate(['/event', this.id, 'notes']);
     } else {
       this.eventService.addExcursionEvent(excursionEvent);
       this.router.navigate(['/']);
     }
-    this.editMode = false;
-    form.reset();
+    // this.editMode = false;
+    // form.reset();
   }
 
   onClear() {
@@ -54,6 +56,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     this.eventForm.reset();
     this.editMode = false;
     this.eventService.deleteExcursionEventById(this.excursionEvent.id);
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy() {

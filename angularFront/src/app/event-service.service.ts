@@ -9,13 +9,13 @@ import { Subject } from 'rxjs';
 export class EventServiceService {
   excursionEventChanged = new Subject<ExcursionEvent[]>();
   excursionEvents: ExcursionEvent[] = [
-    new ExcursionEvent('1', 'Company Lunch', new Date(), 'Dedham office', [
-      new EventNote('1', 'Company Lunch'),
-      new EventNote('2', 'Everyone Come'),
+    new ExcursionEvent(this.guid(), 'Company Lunch', new Date(), 'Dedham office', [
+      new EventNote(this.guid(), 'Company Lunch', new Date()),
+      new EventNote(this.guid(), 'Everyone Come', new Date()),
     ]),
-    new ExcursionEvent('2', 'Excursion White Mountain', new Date(), 'White Mountain', [
-      new EventNote('3', 'White Mountain'),
-      new EventNote('4', 'Need at least 3 people'),
+    new ExcursionEvent(this.guid(), 'Excursion White Mountain', new Date(), 'White Mountain', [
+      new EventNote(this.guid(), 'White Mountain', new Date()),
+      new EventNote(this.guid(), 'Need at least 3 people', new Date()),
     ]),
   ];
 
@@ -26,12 +26,12 @@ export class EventServiceService {
   }
 
   getExcursionEvents() {
-    return this.excursionEvents;
+    return this.excursionEvents.slice();
   }
 
   addExcursionEvent(e: ExcursionEvent) {
     this.excursionEvents.push(e);
-    this.excursionEventChanged.next(this.excursionEvents);
+    this.excursionEventChanged.next(this.getExcursionEvents());
   }
 
   updateExcursionEvent(e: ExcursionEvent) {
@@ -39,7 +39,7 @@ export class EventServiceService {
     existEvent.eventDateTime = e.eventDateTime;
     existEvent.location = e.location;
     existEvent.subject = e.subject;
-    this.excursionEventChanged.next(this.excursionEvents);
+    this.excursionEventChanged.next(this.getExcursionEvents());
   }
 
   deleteExcursionEventById(id: string) {
@@ -48,6 +48,28 @@ export class EventServiceService {
 
   addNote(eventId: string, description: string) {
     const e = this.getExcursionEventById(eventId);
-    e.eventNotes.push(new EventNote('100', description));
+    e.eventNotes.push(new EventNote('100', description, new Date()));
+    this.excursionEventChanged.next(this.getExcursionEvents());
+  }
+
+  getNote(eventId: string, noteId: string) {
+    const excursionEvent = this.getExcursionEventById(eventId);
+    return excursionEvent.eventNotes.find(e => e.id === noteId);
+  }
+
+  updateNote(eventId: string, noteId: string, description: string) {
+    const note = this.getNote(eventId, noteId);
+    note.description = description;
+    note.createdAt = new Date();
+    this.excursionEventChanged.next(this.getExcursionEvents());
+  }
+
+  guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
 }

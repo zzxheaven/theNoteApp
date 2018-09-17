@@ -1,6 +1,16 @@
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+<h3>Excursion Details: </h3>
+<p>
+  Subject: {{excursionEvent.subject}} <br>
+  Location: {{excursionEvent.location}}<br>
+  Date: {{excursionEvent.eventDateTime.toLocaleDateString()}}
+</p>
+
+<button mat-raised-button (click)="onBackToListClick()">Back to list</button>
+
+<mat-button-toggle-group name="event" aria-label="event management">
   <mat-button-toggle (click)="onNotesClick()" value="notes">View Notes</mat-button-toggle>
   <mat-button-toggle (click)="onEditClick()" value="edit">Edit Event</mat-button-toggle>
+
 </mat-button-toggle-group>
 
 <hr>

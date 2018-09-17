@@ -1,18 +1,27 @@
+<!-- <h3>Excursion Details: </h3>
 <p>
   Subject: {{excursionEvent.subject}}
-</p>
-
-<p>
   Location: {{excursionEvent.location}}
-</p>
-
-<p>
   Date: {{excursionEvent.eventDateTime.toLocaleDateString()}}
-</p>
+</p> -->
 
-<p>
-  Excursion Notes:
-</p>
-<mat-list>
-  <mat-list-item *ngFor="let note of excursionEvent.eventNotes"> {{defaultstr(note)}} </mat-list-item>
-</mat-list>
+
+<h3>Notes: </h3>
+
+<app-event-note-edit [eventId]="excursionEvent.id"></app-event-note-edit>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let note of excursionEvent.eventNotes" style="margin:20px;">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Created At: {{note.createdAt.toLocaleDateString()}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{note.description}}
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+  </mat-expansion-panel>
+</mat-accordion>
