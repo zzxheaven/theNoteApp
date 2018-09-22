@@ -1,17 +1,19 @@
-
-<button mat-raised-button color="primary" routerLink="/event/new" routerLinkActive="router-link-active" >New Excursion Event</button>
+<button mat-raised-button color="primary" routerLink="/event/new" routerLinkActive="router-link-active">New Excursion
+  Event</button>
 <hr>
 <mat-accordion>
   <mat-expansion-panel *ngFor="let excursionEvent of excursionEvents" style="margin:20px;">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{excursionEvent.subject}}
+        {{excursionEvent.subject}} <br>
+        Date Time: {{excursionEvent.eventDateTime.toLocaleDateString()}}
       </mat-panel-title>
       <mat-panel-description>
-        Place: {{excursionEvent.location}} <br>
-        Date Time: {{excursionEvent.eventDateTime.toLocaleDateString()}}
+
       </mat-panel-description>
     </mat-expansion-panel-header>
+
+    Place: {{excursionEvent.location}} <br><br>
     <button [routerLink]="['/event',excursionEvent.id]" routerLinkActive="router-link-active" mat-raised-button color="primary"
       matBadge="{{excursionEvent.eventNotes.length}}" matBadgePosition="before" matBadgeColor="accent">
       View Details

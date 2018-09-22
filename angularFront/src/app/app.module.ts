@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import { EventNotesComponent } from './event-list/event-notes/event-notes.compon
 import { EventNoteEditComponent } from './event-list/event-notes/event-note-edit/event-note-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventEditComponent } from './event-list/event-edit/event-edit.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   MatButtonModule,
@@ -22,7 +24,7 @@ import {
   MatListModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatInputModule
+  MatInputModule,
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +42,7 @@ import { EventComponent } from './event-list/event/event.component';
   imports: [
     BrowserModule,
     FormsModule,
-    // NgbModule,
+    NgbModule,
     MatCardModule,
     MatExpansionModule,
     MatFormFieldModule,
