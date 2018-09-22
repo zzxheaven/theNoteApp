@@ -1,5 +1,6 @@
 
-<button mat-raised-button [routerLink]="['/']" routerLinkActive="router-link-active" >Back to list</button>
+
+<button *ngIf="!editMode" mat-raised-button [routerLink]="['/']" routerLinkActive="router-link-active" >Back to list</button>
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="form-container">
 
